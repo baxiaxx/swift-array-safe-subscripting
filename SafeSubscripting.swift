@@ -20,7 +20,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-extension Array {
+protocol SafeSubscripting {
+    
+    typealias Element
+    subscript (safe index: Int) -> Element? { get }
+    
+}
+
+extension Array: SafeSubscripting {
     
     subscript (safe index: Int) -> Element? {
         return self.indices ~= index ? self[index] : nil
